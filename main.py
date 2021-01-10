@@ -46,6 +46,26 @@ def main():
     one_year_later()
 
 
+# Main Functions - calls all functions
+def main():
+    global green_points
+    global answer_A
+    global answer_B
+    global answer_C
+    global yes
+    global no
+    global savings_acc
+    global chequings_acc
+    global credit_avail
+    green_points = 5
+    answer_A = ["a"]
+    answer_B = ["b"]
+    answer_C = ["c"]
+    yes = ["y", "yes"]
+    no = ["n", "no"]
+    intro()
+
+
 def intro():
     print("Welcome to Money Does Grows On Trees!")
     print("-" * 80)
@@ -76,7 +96,6 @@ def intro():
 def verifyIntro():
     print("How much would you like to set aside?")
     extraChoice = input(">>> ")
-    global money
 
     if extraChoice.isdigit():
 
@@ -85,18 +104,17 @@ def verifyIntro():
             print()
             verifyIntro()
 
-        if int(extraChoice) > int(money):
+        if int(extraChoice) > 1000:
             print("Invalid input. Please enter an amount less than 1000.")
             print()
             verifyIntro()
 
-        if 0 < int(extraChoice) <= int(money):
+        if 0 < int(extraChoice) <= 1000:
             print("-" * 80)
             global savings_acc
             global chequings_acc
             savings_acc = int(extraChoice)
-            money = 1000 - savings_acc
-            chequings_acc = int(money)
+            chequings_acc = 1000 - savings_acc
             morning1()
 
     else:
@@ -122,6 +140,7 @@ def introQn():
 
     else:
         print("Invalid input! Please type yes/no OR y/n")
+        print()
         introQn()
 
 
@@ -207,6 +226,7 @@ def morning2GoodQn():
 
     else:
         print("Invalid input! Please type yes/no OR y/n")
+        print()
         morning2GoodQn()
 
 
@@ -228,12 +248,10 @@ def morning3Bad():
 def morning3BadQn():
     print("What would you like to have?")
     choice = input(">>> ")
-    global money
     global chequings_acc
 
     if choice.lower() in answer_A:
         print("Note: Nice choice! Bagel cost $2.20 plus tax this would equal up to $2.5.")
-        money = int(money) - 2.20
         chequings_acc = int(chequings_acc) - 2.20
         print("-" * 80)
         morning3Good()
@@ -242,7 +260,6 @@ def morning3BadQn():
         print("Great choice to boost up your energy for the day!")
         print("   - Coffee cost $1.60 plus tax this would equal to $1.60.!")
         print("   - This is the cheapest option too! Nice job :)")
-        money = int(money) - 1.60
         chequings_acc = int(chequings_acc) - 1.60
         print("-" * 80)
         morning3Good()
@@ -250,13 +267,13 @@ def morning3BadQn():
     elif choice.lower() in answer_C:
         print("You’re set for the day!")
         print("   - Although this combo might seem like a steal, the final is actually $3.50! Not bad.")
-        money = int(money) - 3.50
         chequings_acc = int(chequings_acc) - 3.50
         print("-" * 80)
         morning3Good()
 
     else:
         print("Invalid input! Please type a, b or c")
+        print()
         morning3BadQn()
 
 
@@ -267,9 +284,9 @@ def morning4():
 
 def morning4Qn():
     print("What would you do? ")
-    print("  a. Tell the student to pick up the garbage")
-    print("  b. You throw away classmate garbage")
-    print("  c. Ignore the garbage and walk away")
+    print("a. Tell the student to pick up the garbage")
+    print("b. You throw away classmate garbage")
+    print("c. Ignore the garbage and walk away")
     choice = input(">>> ")
     global green_points
 
@@ -300,14 +317,17 @@ def morning4Qn():
 
     else:
         print("Invalid input! Please type a, b or c")
+        print()
         morning4Qn()
 
 
 def morningSummary():
-    print("Money Remaining: ", int(money))
     print("Chequing Account Balance: ", int(chequings_acc))
     print("Savings Account Balance: ", int(savings_acc))
     print("Green Points Collected: ", int(green_points))
+
+
+
 
 
 
